@@ -1,0 +1,11 @@
+---
+- name: Insall Wireshark package
+  apt:
+    name: wireshark
+    state: present
+
+- name: Add user to Wireshark group (optional, to run Wireshark without root)
+  user:
+    name: "{{ username }}"
+    groups: wireshark
+    append: yes

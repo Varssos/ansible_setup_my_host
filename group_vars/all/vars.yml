@@ -1,0 +1,20 @@
+username: sw
+
+packages:
+  - apt-transport-https
+  - vim
+  - htop
+  - neofetch
+  - tmux
+  - speedtest-cli
+  - curl
+  - filezilla
+  - glogg
+  - meld
+  - shutter
+  - remmina
+
+
+snap_packages:
+  - notepad-plus-plus
+  - spotify

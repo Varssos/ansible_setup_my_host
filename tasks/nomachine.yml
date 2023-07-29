@@ -1,0 +1,15 @@
+---
+- name: Uninstall NoMachine
+  apt:
+    name: nomachine
+    state: absent
+
+- name: Download file .deb NoMachine
+  get_url:
+    url: "https://download.nomachine.com/download/8.8/Linux/nomachine_8.8.1_1_amd64.deb"
+    dest: "/tmp/nomachine_amd64.deb"
+
+- name: Install NoMachine
+  apt:
+    deb: "/tmp/nomachine_amd64.deb"
+    state: present

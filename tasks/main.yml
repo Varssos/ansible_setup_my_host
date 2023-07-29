@@ -1,0 +1,8 @@
+---
+- include_tasks: essential.yml
+- include_tasks: nomachine.yml
+- include_tasks: sublime.yml
+- include_tasks: vscode.yml
+- include_tasks: signal.yml
+- include_tasks: spotify.yml
+- include_tasks: wireshark.yml
