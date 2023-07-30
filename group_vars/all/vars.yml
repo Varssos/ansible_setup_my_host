@@ -1,6 +1,6 @@
-username: seba_nas
+username: sw
 
-packages:
+apt_packages:
   - apt-transport-https
   - vim
   - htop
@@ -13,6 +13,7 @@ packages:
   - meld
   - shutter
   - remmina
+
 
 
 snap_packages:

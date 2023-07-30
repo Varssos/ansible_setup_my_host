@@ -1,8 +1,15 @@
 ---
 - include_tasks: essential.yml
+- include_tasks: collect_packages.yml
 - include_tasks: nomachine.yml
+  when: "'nomachine' not in ansible_facts.packages"
 - include_tasks: sublime.yml
+  when: "'sublime-text' not in ansible_facts.packages"
 - include_tasks: vscode.yml
+  when: "'code' not in ansible_facts.packages"
 - include_tasks: signal.yml
+  when: "'signal-desktop' not in ansible_facts.packages"
 - include_tasks: spotify.yml
+  when: "'spotify-client' not in ansible_facts.packages"
 - include_tasks: wireshark.yml
+  when: "'wireshark' not in ansible_facts.packages"

@@ -1,16 +1,10 @@
 ---
-- name: Check installed packages. Is NoMachine installed?
-  package_facts:
-    manager: auto
-
 - name: Download file .deb NoMachine
   get_url:
     url: "{{ nomachine_deb_url }}"
     dest: "/tmp/{{ nomachine_deb_file }}"
-  when: "'nomachine' not in ansible_facts.packages"
 
 - name: Install NoMachine
   apt:
     deb: "/tmp/{{ nomachine_deb_file }}"
     state: present
-  when: "'nomachine' not in ansible_facts.packages"

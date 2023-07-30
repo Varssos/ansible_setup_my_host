@@ -1,12 +1,12 @@
+---
 - name: Update packages
   apt:
     update_cache: yes
     upgrade: yes
 
-
 - name: Install essential packages
   package:
-    name: "{{ packages }}"
+    name: "{{ apt_packages }}"
     state: latest
 
 - name: Install packages in snap
