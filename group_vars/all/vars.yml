@@ -1,4 +1,4 @@
-username: sw
+username: seba_nas
 
 packages:
   - apt-transport-https
@@ -18,3 +18,8 @@ packages:
 snap_packages:
   - notepad-plus-plus
   - spotify
+
+
+# NoMachine
+nomachine_deb_url: "https://www.nomachine.com/free/linux/64/deb"
+nomachine_deb_file: "nomachine.deb"

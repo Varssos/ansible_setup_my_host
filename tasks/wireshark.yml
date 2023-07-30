@@ -4,6 +4,11 @@
     name: wireshark
     state: present
 
+- name: Check if wireshark group exist
+  group:
+    name: wireshark
+    state: present
+
 - name: Add user to Wireshark group (optional, to run Wireshark without root)
   user:
     name: "{{ username }}"

@@ -1,5 +1,10 @@
 # ansible_setup_my_host
 
+# Prerequisities
+
+First replace `username` in `group_vars/all/vars.yml`
+
+
 ## Run
 
 ```

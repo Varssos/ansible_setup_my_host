@@ -1,15 +1,16 @@
 ---
-- name: Uninstall NoMachine
-  apt:
-    name: nomachine
-    state: absent
+- name: Check installed packages. Is NoMachine installed?
+  package_facts:
+    manager: auto
 
 - name: Download file .deb NoMachine
   get_url:
-    url: "https://download.nomachine.com/download/8.8/Linux/nomachine_8.8.1_1_amd64.deb"
-    dest: "/tmp/nomachine_amd64.deb"
+    url: "{{ nomachine_deb_url }}"
+    dest: "/tmp/{{ nomachine_deb_file }}"
+  when: "'nomachine' not in ansible_facts.packages"
 
 - name: Install NoMachine
   apt:
-    deb: "/tmp/nomachine_amd64.deb"
+    deb: "/tmp/{{ nomachine_deb_file }}"
     state: present
+  when: "'nomachine' not in ansible_facts.packages"
