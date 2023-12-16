@@ -4,6 +4,15 @@
 
 First replace `username` in `group_vars/all/vars.yml`
 
+## Install galaxy dependencies
+```
+ansible-galaxy install -r requirements.yml
+```
+
+## Set tailscale key in env if you want to login automatically!
+```
+export TAILSCALE_KEY="HERE_YOUR_KEY_FROM_SETTINGS_AUTH_KEYS"
+```
 
 ## Run
 
