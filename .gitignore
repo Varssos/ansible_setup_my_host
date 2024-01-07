@@ -1,2 +1,3 @@
 .vscode
 .fact_cache/
+group_vars/all/secret.yml

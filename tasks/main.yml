@@ -13,3 +13,5 @@
   when: "'spotify-client' not in ansible_facts.packages"
 - include_tasks: wireshark.yml
   when: "'wireshark' not in ansible_facts.packages"
+- include_tasks: samba_client.yml
+  when: mount_local_samba or mount_tailscale_samba

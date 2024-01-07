@@ -24,3 +24,15 @@ snap_packages:
 # NoMachine
 nomachine_deb_url: "https://www.nomachine.com/free/linux/64/deb"
 nomachine_deb_file: "nomachine.deb"
+
+# Homeserver
+homeserver_local_ip: 192.168.0.63
+homeserver_tailscale_ip: 100.64.234.115
+homeserver_user_name: seba_nas
+
+## Samba mount share
+mount_local_samba: true
+mount_tailscale_samba: true
+local_samba_mount_point_share: /mnt/seba_nas_shared_disk
+tailscale_samba_mount_point_share: /mnt/seba_nas_shared_disk_tailscale
+samba_export_share: md0
