@@ -13,6 +13,7 @@ apt_packages:
   - meld
   - shutter
   - remmina
+  - dlt-viewer
 
 
 
