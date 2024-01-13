@@ -11,9 +11,15 @@ apt_packages:
   - filezilla
   - glogg
   - meld
+  - kdiff3
+  - rpi-imager
   - shutter
   - remmina
   - dlt-viewer
+  - grub-customizer
+  - gparted
+  - anki
+  - brave-browser
 
 
 
@@ -37,3 +43,6 @@ mount_tailscale_samba: true
 local_samba_mount_point_share: /mnt/seba_nas_shared_disk
 tailscale_samba_mount_point_share: /mnt/seba_nas_shared_disk_tailscale
 samba_export_share: md0
+
+# Virtualbox
+virtualbox_version: "6.1"
