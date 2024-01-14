@@ -1,5 +1,5 @@
 ---
-- name: Insall Wireshark package
+- name: Install Wireshark package
   apt:
     name: wireshark
     state: present

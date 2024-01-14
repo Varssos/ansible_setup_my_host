@@ -1,0 +1,28 @@
+---
+- name: Create dest directory ~/Documents/games/
+  ansible.builtin.file:
+    path: "/home/{{ username }}/Documents/games"
+    state: directory
+    mode: "0775"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: Create and fill file idle.sh
+  ansible.builtin.copy:
+    content: |
+      #!/bin/bash
+
+      while true
+      do
+          xdotool keydown ctrl keydown Down keyup Down keyup ctrl
+          sleep 1
+          xdotool keydown ctrl keydown Right keyup Right keyup ctrl
+          sleep 180
+      done
+    dest: "/home/{{ username }}/Documents/games/idle.sh"
+- name: Set permission to execute idle.sh
+  ansible.builtin.file:
+    path: "/home/{{ username }}/Documents/games/idle.sh"
+    mode: "+x"
+    owner: "{{ username }}"
+    group: "{{ username }}"

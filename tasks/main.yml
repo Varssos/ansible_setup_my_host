@@ -17,3 +17,4 @@
   when: mount_local_samba or mount_tailscale_samba
 - include_tasks: brave.yml
 # - include_tasks: virtualbox.yml
+- include_tasks: xdotool.yml
