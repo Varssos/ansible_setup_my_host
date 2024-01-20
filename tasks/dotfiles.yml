@@ -1,0 +1,57 @@
+---
+# - name: Chown the repo
+#   file:
+#       path: '/home/{{ username }}/dotfiles'
+#       recurse: yes
+#       state: directory
+#       owner: '{{ username }}'
+#       group: '{{ username }}'
+
+# - name: Clone the latest bashrc repo
+#   become_user: '{{ username }}'
+#   git:
+#       repo: '{{ bashrc_repo }}'
+#       dest: '/home/{{ username }}/dotfiles/bashrc'
+#       recursive: no
+#       force: yes
+
+# - name: Source .my_bashrc in ~/.bashrc
+#   lineinfile:
+#     path: ~/.bashrc
+#     line: 'source ~/dotfiles/bashrc/.my_bashrc'
+#   become_user: '{{ username }}'
+
+- name: Clone Tmux Plugin Manager (tpm)
+  git:
+    repo: 'https://github.com/tmux-plugins/tpm.git'
+    dest: '~/.tmux/plugins/tpm'
+    version: master
+    accept_hostkey: yes
+  become_user: '{{ username }}'
+
+- name: Clone the latest tmux_config repo
+  become_user: '{{ username }}'
+  git:
+      repo: '{{ tmux_config_repo }}'
+      dest: '{{ tmux_config_repo_path }}'
+      recursive: no
+      force: yes
+
+- name: Make sure that ~/.config/tmux exist
+  file:
+      path: '/home/{{ username }}/.config/tmux'
+      state: directory
+      owner: '{{ username }}'
+      group: '{{ username }}'
+
+- name: Create symbolic link for tmux configuration
+  file:
+    src: '{{ tmux_config_repo_path }}/tmux.conf'
+    dest: '/home/{{ username }}/.config/tmux/tmux.conf'
+    state: link
+    owner: '{{ username }}'
+    group: '{{ username }}'
+
+- name: Run tmux source command
+  command: /home/{{ username }}/.tmux/plugins/tpm/scripts/install_plugins.sh
+  become_user: '{{ username }}'
