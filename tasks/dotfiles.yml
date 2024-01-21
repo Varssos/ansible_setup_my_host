@@ -52,6 +52,11 @@
     owner: '{{ username }}'
     group: '{{ username }}'
 
-- name: Run tmux source command
+# Dont know why it is not working in ansible, but manually it works
+# - name: Run tmux source plugins
+#   command: /home/{{ username }}/.tmux/plugins/tpm/scripts/source_plugins.sh
+#   become_user: '{{ username }}'
+
+- name: Run tmux install plugins
   command: /home/{{ username }}/.tmux/plugins/tpm/scripts/install_plugins.sh
   become_user: '{{ username }}'
