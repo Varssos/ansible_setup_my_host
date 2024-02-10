@@ -21,6 +21,7 @@ apt_packages:
   - anki
   - brave-browser
   - xdotool
+  - shellcheck
 
 
 
