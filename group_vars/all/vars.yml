@@ -16,10 +16,8 @@ apt_packages:
   - shutter
   - remmina
   - dlt-viewer
-  - grub-customizer
   - gparted
   - anki
-  - brave-browser
   - xdotool
   - shellcheck
 

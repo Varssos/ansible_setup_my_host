@@ -9,13 +9,16 @@
   when: "'code' not in ansible_facts.packages"
 - include_tasks: signal.yml
   when: "'signal-desktop' not in ansible_facts.packages"
-- include_tasks: spotify.yml
-  when: "'spotify-client' not in ansible_facts.packages"
+# Disabled, because installed with snap
+# - include_tasks: spotify.yml
+#   when: "'spotify-client' not in ansible_facts.packages"
 - include_tasks: wireshark.yml
   when: "'wireshark' not in ansible_facts.packages"
 - include_tasks: samba_client.yml
   when: mount_local_samba or mount_tailscale_samba
 - include_tasks: brave.yml
-- include_tasks: virtualbox.yml
+# Disabled due to missing libvpx7 on Ubuntu 24.04
+# - include_tasks: virtualbox.yml
 - include_tasks: xdotool.yml
 - include_tasks: dotfiles.yml
+- include_tasks: grub-customizer.yml

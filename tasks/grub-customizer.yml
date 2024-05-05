@@ -1,0 +1,14 @@
+---
+- name: Add Grub Customizer PPA
+  apt_repository:
+    repo: ppa:danielrichter2007/grub-customizer
+    state: present
+
+- name: Update apt packages cache
+  apt:
+    update_cache: yes
+
+- name: Install Grub Customizer
+  apt:
+    name: grub-customizer
+    state: latest

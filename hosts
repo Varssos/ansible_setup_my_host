@@ -3,3 +3,6 @@ localhost ansible_connection=local
 
 [nas]
 seba_nas ansible_host=192.168.0.62 ansible_user=seba_nas ansible_connection=ssh ansible_ssh_private_key_file=~/.ssh/seba_nas ansible_ssh_port=69
+
+[laptop_acer]
+sw ansible_host=192.168.0.66 ansible_user=sw ansible_connection=ssh ansible_ssh_private_key_file=~/.ssh/laptop_acer ansible_ssh_port=22
