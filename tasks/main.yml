@@ -22,3 +22,4 @@
 - include_tasks: xdotool.yml
 - include_tasks: dotfiles.yml
 - include_tasks: grub-customizer.yml
+- include_tasks: fzf.yml

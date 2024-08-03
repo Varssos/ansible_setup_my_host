@@ -1,0 +1,15 @@
+---
+- name: Install fzf
+  apt:
+    name: fzf
+    state: present
+
+- name: Find key-bindings.bash
+  command: find /usr/share/doc -name key-bindings.bash -print -quit
+  register: key_bindings_path
+
+- name: Setup fzf key bindings
+  lineinfile:
+    path: ~/.bashrc
+    line: "source {{ key_bindings_path.stdout }}"
+    insertafter: EOF

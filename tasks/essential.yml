@@ -3,6 +3,7 @@
   apt:
     update_cache: yes
     upgrade: yes
+  ignore_errors: yes
 
 - name: Install essential packages
   package:
