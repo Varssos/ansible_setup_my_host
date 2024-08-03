@@ -14,3 +14,9 @@
   snap:
     name: "{{ snap_packages }}"
     state: present
+
+- name: Install packages with Flatpak
+  flatpak:
+    name: "{{ flatpak_packages }}"
+    state: present
+    remote: flathub

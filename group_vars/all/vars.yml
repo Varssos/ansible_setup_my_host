@@ -27,6 +27,9 @@ snap_packages:
   - notepad-plus-plus
   - spotify
 
+flatpak_packages:
+  - md.obsidian.Obsidian
+
 
 # NoMachine
 nomachine_deb_url: "https://www.nomachine.com/free/linux/64/deb"
