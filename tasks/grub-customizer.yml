@@ -1,12 +1,17 @@
 ---
-# Hardcoded relase codenames for Ubuntu 20.04, 21.04, 21.10, 22.04, and 24.04. Can't find a better way to make it generic.
-- name: Set release codename
-  set_fact:
-    release_codename: "{{ ansible_distribution_release if ansible_distribution == 'Ubuntu' else 'focal' if ansible_distribution_release in ['victoria', 'una'] else 'jammy' if ansible_distribution_release == '22.04' else '24.04' }}"
+# # Hardcoded relase codenames for Ubuntu 20.04, 21.04, 21.10, 22.04, and 24.04. Can't find a better way to make it generic.
+# - name: Set release codename
+#   set_fact:
+#     release_codename: "{{ ansible_distribution_release if ansible_distribution == 'Ubuntu' else 'focal' if ansible_distribution_release in ['victoria', 'una'] else 'jammy' if ansible_distribution_release == '22.04' else '24.04' }}"
 
-- name: Add Grub Customizer PPA
-  apt_repository:
-    repo: "deb http://ppa.launchpad.net/danielrichter2007/grub-customizer/ubuntu {{ release_codename }} main"
+# - name: Add Grub Customizer PPA
+#   apt_repository:
+#     repo: "deb http://ppa.launchpad.net/danielrichter2007/grub-customizer/ubuntu {{ release_codename }} main"
+#     state: present
+
+- name: Add PPA repository for grub-customizer
+  ansible.builtin.apt_repository:
+    repo: "ppa:danielrichter2007/grub-customizer"
     state: present
 
 - name: Update apt packages cache
