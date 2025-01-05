@@ -20,12 +20,7 @@ apt_packages:
   - anki
   - xdotool
   - shellcheck
-
-
-
-snap_packages:
-  - notepad-plus-plus
-  - spotify
+  - spotify-client
 
 flatpak_packages:
   - md.obsidian.Obsidian
