@@ -1,7 +1,7 @@
 ---
 - name: Import Spotify public software signing key
   apt_key:
-    url: https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg
+    url: https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg
     state: present
 
 - name: Add Spotify APT repository

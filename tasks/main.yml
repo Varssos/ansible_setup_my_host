@@ -9,9 +9,8 @@
   when: "'code' not in ansible_facts.packages"
 - include_tasks: signal.yml
   when: "'signal-desktop' not in ansible_facts.packages"
-# Disabled, because installed with snap
-# - include_tasks: spotify.yml
-#   when: "'spotify-client' not in ansible_facts.packages"
+- include_tasks: spotify.yml
+  when: "'spotify-client' not in ansible_facts.packages"
 - include_tasks: wireshark.yml
   when: "'wireshark' not in ansible_facts.packages"
 - include_tasks: samba_client.yml
