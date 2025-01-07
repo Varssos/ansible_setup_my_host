@@ -2,9 +2,17 @@
 
 Only Ubunu 22.04 and 23.10 are supported
 
-# Prerequisities
+## Prerequisities
 
 First replace `username` in `group_vars/all/vars.yml`
+
+## Install git and ansible
+
+```
+sudo apt update
+sudo apt install git
+sudo apt install ansible-core
+```
 
 ## Install galaxy dependencies
 ```
