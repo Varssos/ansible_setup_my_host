@@ -1,6 +1,12 @@
 # ansible_setup_my_host
 
-Only Ubunu 22.04 and 23.10 are supported
+Supported platforms:
+- Ubuntu:
+    - 22.04
+    - 23.10
+    - 24.04
+- Mint:
+    - Wilma 22
 
 ## Prerequisities
 

@@ -4,11 +4,4 @@
 
   tasks:
     - import_tasks: tasks/main.yml
-  
-  # roles:
-  #   - role: artis3n.tailscale
-  #     vars:
-  #       tailscale_up_skip: true
-  #       # or
-  #       # tailscale_authkey: "{{ lookup('env', 'TAILSCALE_KEY') }}"
         

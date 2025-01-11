@@ -1,0 +1,6 @@
+---
+- name: Install tailscale
+  shell: curl -fsSL https://tailscale.com/install.sh | sh
+
+- name: Login to tailscale network
+  shell: sudo tailscale up --auth-key="{{ lookup('env', 'TAILSCALE_KEY') }}"
