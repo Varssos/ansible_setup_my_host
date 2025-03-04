@@ -20,9 +20,11 @@ apt_packages:
   - anki
   - xdotool
   - shellcheck
+  - gimp
 
 flatpak_packages:
   - md.obsidian.Obsidian
+  - com.discordapp.Discord
 
 
 # NoMachine
