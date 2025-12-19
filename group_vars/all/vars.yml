@@ -21,10 +21,12 @@ apt_packages:
   - xdotool
   - shellcheck
   - gimp
+  - nmap
 
 flatpak_packages:
   - md.obsidian.Obsidian
   - com.discordapp.Discord
+  - net.werwolv.ImHex
 
 
 # NoMachine
