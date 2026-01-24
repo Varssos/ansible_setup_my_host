@@ -1,28 +1,23 @@
 ---
-- name: Install Signal public software signing key
-  shell: "wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg"
-  args:
-    chdir: /tmp
-
-- name: Copy Signal keyring to /usr/share/keyrings/
-  copy:
-    src: /tmp/signal-desktop-keyring.gpg
-    dest: /usr/share/keyrings/signal-desktop-keyring.gpg
-    owner: root
-    group: root
+- name: Download Signal GPG key
+  get_url:
+    url: https://updates.signal.org/desktop/apt/keys.asc
+    dest: /tmp/signal-keys.asc
     mode: '0644'
-    remote_src: yes
 
-- name: Add Signal APT repository
-  apt_repository:
-    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main"
-    state: present
+- name: Convert Signal key to apt keyring format
+  command: gpg --dearmor --yes --output /usr/share/keyrings/signal-desktop-keyring.gpg /tmp/signal-keys.asc
+  args:
+    creates: /usr/share/keyrings/signal-desktop-keyring.gpg
 
-- name: Update apt cache
-  apt:
-    update_cache: yes
+- name: Download Signal repository file
+  get_url:
+    url: https://updates.signal.org/static/desktop/apt/signal-desktop.sources
+    dest: /etc/apt/sources.list.d/signal-desktop.sources
+    mode: '0644'
 
-- name: Install Signal package
+- name: Install signal-desktop
   apt:
     name: signal-desktop
     state: present
+    update_cache: yes

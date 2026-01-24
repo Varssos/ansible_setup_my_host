@@ -1,0 +1,9 @@
+---
+- name: Get Ubuntu codename
+  shell: . /etc/os-release && echo $UBUNTU_CODENAME
+  register: _ubuntu_codename
+  changed_when: false
+
+- name: Set ubuntu_codename fact
+  set_fact:
+    ubuntu_codename: "{{ _ubuntu_codename.stdout }}"

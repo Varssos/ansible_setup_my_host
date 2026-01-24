@@ -1,4 +1,5 @@
 ---
+# It's to update ansible_facts.packages
 - name: Check installed packages
   package_facts:
     manager: auto

@@ -1,4 +1,5 @@
 ---
+# Simple idle bot
 - name: Create dest directory ~/Documents/games/
   ansible.builtin.file:
     path: "/home/{{ username }}/Documents/games"

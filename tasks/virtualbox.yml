@@ -1,18 +1,21 @@
 ---
-- name: Download Virtualbox .deb
-  get_url:
-    url: https://download.virtualbox.org/virtualbox/7.0.14/virtualbox-7.0_7.0.14-161095~Ubuntu~jammy_amd64.deb
-    dest: /tmp/virtualbox-7.0.14.deb
+- name: Download and install VirtualBox GPG key
+  shell: |
+    wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo gpg --yes --output /usr/share/keyrings/oracle-virtualbox-2016.gpg --dearmor
 
-- name: Install Virtualbox 7
-  apt:
-    deb: /tmp/virtualbox-7.0.14.deb
+- name: Add VirtualBox apt repository
+  apt_repository:
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian {{ ubuntu_codename }} contrib"
+    filename: virtualbox
     state: present
 
-- name: Update apt packages cache
+- name: Update apt cache and install VirtualBox
   apt:
+    name: virtualbox-7.1
+    state: present
     update_cache: yes
 
+# To use USB etc
 - name: Add user to 'vboxusers' group
   user:
     name: "{{ username }}"

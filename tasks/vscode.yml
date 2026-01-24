@@ -1,12 +1,24 @@
 ---
-- name: Add Microsoft GPG key for VS Code
-  apt_key:
+- name: Ensure apt keyrings directory exists
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+- name: Download Microsoft GPG key for VS Code
+  get_url:
     url: https://packages.microsoft.com/keys/microsoft.asc
-    state: present
+    dest: /tmp/microsoft.asc
+    mode: '0644'
+
+- name: Convert key to apt keyring format
+  command: gpg --dearmor --yes --output /etc/apt/keyrings/microsoft.gpg /tmp/microsoft.asc
+  args:
+    creates: /etc/apt/keyrings/microsoft.gpg
 
 - name: Add VS Code APT repository
   apt_repository:
-    repo: "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+    repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main"
     state: present
 
 - name: Update apt cache

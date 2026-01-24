@@ -1,15 +1,24 @@
 ---
-- name: Import Spotify public software signing key
-  apt_key:
-    url: https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg
-    state: present
+- name: Download Spotify GPG key
+  get_url:
+    url: https://download.spotify.com/debian/pubkey_5384CE82BA52C83A.asc
+    dest: /tmp/spotify-key.asc
+    mode: '0644'
 
+- name: Convert Spotify key to apt keyring format
+  command: gpg --dearmor --yes --output /etc/apt/keyrings/spotify.gpg /tmp/spotify-key.asc
+  args:
+    creates: /etc/apt/keyrings/spotify.gpg
+  
 - name: Add Spotify APT repository
   apt_repository:
-    repo: "deb http://repository.spotify.com stable non-free"
+    repo: "deb [signed-by=/etc/apt/keyrings/spotify.gpg] https://repository.spotify.com stable non-free"
+    filename: spotify
     state: present
+    update_cache: no
 
 - name: Install Spotify package
   apt:
     name: spotify-client
     state: present
+    update_cache: yes
