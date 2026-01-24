@@ -22,6 +22,7 @@ apt_packages:
   - shellcheck
   - gimp
   - nmap
+  - libimage-exiftool-perl
 
 flatpak_packages:
   - md.obsidian.Obsidian
