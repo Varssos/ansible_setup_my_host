@@ -1,0 +1,18 @@
+# Based on: https://docs.coolercontrol.org/installation/debian.html
+- name: Add GPG key for CoolerControl repository
+  shell: curl -1sLf 'https://dl.cloudsmith.io/public/coolercontrol/coolercontrol/setup.deb.sh' | sudo -E bash
+
+- name: Update apt packages cache
+  apt:
+    update_cache: yes
+
+- name: Install CoolerControl
+  apt:
+    name: coolercontrol
+    state: present
+
+- name: Enable and start CoolerControl daemon
+  systemd:
+    name: coolercontrold
+    enabled: yes
+    state: started
