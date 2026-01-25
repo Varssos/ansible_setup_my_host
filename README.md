@@ -36,6 +36,15 @@ export TAILSCALE_KEY="HERE_YOUR_KEY_FROM_SETTINGS_AUTH_KEYS"
 ansible-playbook run.yml -K
 ```
 
+## TODO after installation
+### Install private dotfiles
+```
+cd ~/
+git clone https://github.com/Varssos/dotfiles_private.git
+cd dotfiles_private
+./setup_env.sh
+```
+
 
 
 ## Known issues
