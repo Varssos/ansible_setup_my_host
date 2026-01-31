@@ -9,7 +9,6 @@ apt_packages:
   - curl
 
   # Usefull tools
-  - tmux
   - speedtest-cli
   - filezilla
   - meld
