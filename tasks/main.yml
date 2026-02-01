@@ -8,26 +8,32 @@
 - include_tasks: brave.yml
   when: "'brave-browser' not in ansible_facts.packages"
 - include_tasks: chrome.yml
+  when: "'google-chrome' not in ansible_facts.packages"
 - include_tasks: coolercontrol.yml
   when: "'coolercontrol' not in ansible_facts.packages"
 - include_tasks: dotfiles.yml
 - include_tasks: fzf.yml
+  when: "'fzf' not in ansible_facts.packages"
 - include_tasks: grub-customizer.yml
+  when: "'grub-customizer' not in ansible_facts.packages"
 - include_tasks: klogg.yml
   when: "'klogg' not in ansible_facts.packages"
 - include_tasks: nomachine.yml
   when: "'nomachine' not in ansible_facts.packages"
-- include_tasks: signal.yml
-  when: "'signal-desktop' not in ansible_facts.packages"
-- include_tasks: spotify.yml
-  when: "'spotify-client' not in ansible_facts.packages"
 - include_tasks: sublime.yml
   when: "'sublime-text' not in ansible_facts.packages"
-- include_tasks: tailscale.yml
 - include_tasks: virtualbox.yml
   when: "'virtualbox' not in ansible_facts.packages"
 - include_tasks: vscode.yml
   when: "'code' not in ansible_facts.packages"
 - include_tasks: wireshark.yml
   when: "'wireshark' not in ansible_facts.packages"
+
+
+# More private applications
+- include_tasks: signal.yml
+  when: "'signal-desktop' not in ansible_facts.packages"
+- include_tasks: spotify.yml
+  when: "'spotify-client' not in ansible_facts.packages"
+- include_tasks: tailscale.yml
 - include_tasks: xdotool.yml
