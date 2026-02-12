@@ -28,6 +28,7 @@ apt_packages:
   - dlt-viewer
 
 flatpak_packages:
+  - com.brave.Browser
   - com.discordapp.Discord
   - net.werwolv.ImHex
 

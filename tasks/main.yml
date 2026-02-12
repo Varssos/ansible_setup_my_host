@@ -5,8 +5,6 @@
 
 
 # Custom applications which are more complex to install than apt install
-- include_tasks: brave.yml
-  when: "'brave-browser' not in ansible_facts.packages"
 - include_tasks: chrome.yml
   when: "'google-chrome' not in ansible_facts.packages"
 - include_tasks: coolercontrol.yml
