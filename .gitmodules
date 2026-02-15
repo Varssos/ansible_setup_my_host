@@ -1,3 +1,4 @@
 [submodule "roles/dotfiles_ansible"]
 	path = roles/dotfiles_ansible
 	url = https://github.com/Varssos/dotfiles_ansible.git
+	branch = master

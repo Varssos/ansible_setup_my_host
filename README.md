@@ -16,7 +16,7 @@ First replace `ansible_user` in `hosts`
 
 ```
 git submodule init
-git submodule update
+git submodule update --init --remote --recursive
 ```
 
 ## Install git and ansible
