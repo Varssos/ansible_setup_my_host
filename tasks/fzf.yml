@@ -11,7 +11,7 @@
 - name: Setup fzf key bindings
   lineinfile:
     # Ansible by default uses /root as HOME when running with sudo
-    path: /home/{{username}}/.bashrc
+    path: /home/{{ansible_user}}/.bashrc
     line: "source {{ key_bindings_path.stdout }}"
     state: present
     create: yes

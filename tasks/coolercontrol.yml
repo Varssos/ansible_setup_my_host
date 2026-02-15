@@ -16,3 +16,5 @@
     name: coolercontrold
     enabled: yes
     state: started
+  # ignore on docker since it doesn't have systemd
+  ignore_errors: yes

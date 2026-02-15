@@ -6,10 +6,10 @@
 
 # Custom applications which are more complex to install than apt install
 - include_tasks: chrome.yml
-  when: "'google-chrome' not in ansible_facts.packages"
+  when: "'google-chrome-stable' not in ansible_facts.packages"
 - include_tasks: coolercontrol.yml
   when: "'coolercontrol' not in ansible_facts.packages"
-- include_tasks: dotfiles.yml
+# - include_tasks: dotfiles.yml
 - include_tasks: fzf.yml
   when: "'fzf' not in ansible_facts.packages"
 - include_tasks: grub-customizer.yml
@@ -21,7 +21,7 @@
 - include_tasks: sublime.yml
   when: "'sublime-text' not in ansible_facts.packages"
 - include_tasks: virtualbox.yml
-  when: "'virtualbox' not in ansible_facts.packages"
+  when: "'virtualbox-7.1' not in ansible_facts.packages"
 - include_tasks: vscode.yml
   when: "'code' not in ansible_facts.packages"
 - include_tasks: wireshark.yml
@@ -29,9 +29,9 @@
 
 
 # More private applications
-- include_tasks: signal.yml
-  when: "'signal-desktop' not in ansible_facts.packages"
-- include_tasks: spotify.yml
-  when: "'spotify-client' not in ansible_facts.packages"
-- include_tasks: tailscale.yml
-- include_tasks: xdotool.yml
+# - include_tasks: signal.yml
+#   when: "'signal-desktop' not in ansible_facts.packages"
+# - include_tasks: spotify.yml
+#   when: "'spotify-client' not in ansible_facts.packages"
+# - include_tasks: tailscale.yml
+# - include_tasks: xdotool.yml

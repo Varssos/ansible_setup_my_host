@@ -1,11 +1,9 @@
-username: sw
-
 apt_packages:
   # basic tools
   - apt-transport-https
   - vim
   - htop
-  - neofetch
+  - screenfetch
   - curl
 
   # Usefull tools
@@ -17,7 +15,6 @@ apt_packages:
   - shutter
   - remmina
   - gparted
-  - anki
   - xdotool
   - shellcheck
   - gimp
@@ -26,6 +23,9 @@ apt_packages:
   
   # automotive
   - dlt-viewer
+
+  # more private
+  - anki
 
 flatpak_packages:
   - com.brave.Browser
@@ -36,13 +36,3 @@ flatpak_packages:
 # NoMachine
 nomachine_deb_url: "https://www.nomachine.com/free/linux/64/deb"
 nomachine_deb_file: "nomachine.deb"
-
-# Dotfiles
-bashrc_repo: https://github.com/Varssos/bashrc.git
-
-tmux_config_repo: https://github.com/Varssos/tmux_config.git
-my_files_path: /home/{{ username }}/Documents/my_files
-tmux_config_repo_path: "{{ my_files_path }}/linux/tmux_config"
-
-dotfiles_path: /home/{{ username }}/dotfiles
-dotfiles_repo: https://github.com/Varssos/dotfiles.git

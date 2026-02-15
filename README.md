@@ -10,7 +10,14 @@ Supported platforms:
 
 ## Prerequisities
 
-First replace `username` in `group_vars/all/vars.yml`
+First replace `ansible_user` in `hosts`
+
+## Add submodules
+
+```
+git submodule init
+git submodule update
+```
 
 ## Install git and ansible
 

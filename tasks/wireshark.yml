@@ -11,7 +11,7 @@
 
 - name: Add user to Wireshark group (optional, to run Wireshark without root)
   user:
-    name: "{{ username }}"
+    name: "{{ ansible_user }}"
     groups: wireshark
     append: yes
 

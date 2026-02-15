@@ -18,7 +18,7 @@
 # To use USB etc
 - name: Add user to 'vboxusers' group
   user:
-    name: "{{ username }}"
+    name: "{{ ansible_user }}"
     groups: vboxusers
     append: yes
 

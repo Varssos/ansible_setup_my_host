@@ -10,6 +10,14 @@
     name: "{{ apt_packages }}"
     state: latest
 
+- name: Install flatpak
+  apt:
+    name: flatpak
+    state: present
+
+- name: Add Flathub repository
+  command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
 - name: Install packages with Flatpak
   flatpak:
     name: "{{ flatpak_packages }}"
