@@ -10,5 +10,5 @@ laptop_acer ansible_host=192.168.0.67 ansible_user=sw ansible_connection=ssh ans
 [docker]
 ubuntu2204 ansible_host=localhost ansible_user=ubuntu_user ansible_connection=ssh ansible_ssh_port=2204 ansible_ssh_common_args='-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 ubuntu2404 ansible_host=localhost ansible_user=ubuntu_user ansible_connection=ssh ansible_ssh_port=2404 ansible_ssh_common_args='-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
-# ubuntu2510 ansible_host=localhost ansible_user=ubuntu_user ansible_connection=ssh ansible_ssh_port=2510 ansible_ssh_common_args='-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+ubuntu2504 ansible_host=localhost ansible_user=ubuntu_user ansible_connection=ssh ansible_ssh_port=2504 ansible_ssh_common_args='-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 # ubuntu2604 ansible_host=localhost ansible_user=ubuntu_user ansible_connection=ssh ansible_ssh_port=2604 ansible_ssh_common_args='-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'

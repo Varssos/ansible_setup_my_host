@@ -3,8 +3,8 @@
 Supported platforms:
 - Ubuntu:
     - 22.04
-    - 23.10
     - 24.04
+    - 25.04
 - Mint:
     - Wilma 22
 
@@ -52,6 +52,13 @@ cd dotfiles_private
 ./setup_env.sh
 ```
 
+
+## Tests
+Run ansible on vagrant VMs. Check `vagrant_for_ansible/README.md`
+```
+cd vagrant_for_ansible
+./run.sh
+```
 
 
 ## Known issues

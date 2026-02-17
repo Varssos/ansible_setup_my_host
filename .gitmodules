@@ -2,3 +2,7 @@
 	path = roles/dotfiles_ansible
 	url = https://github.com/Varssos/dotfiles_ansible.git
 	branch = master
+[submodule "vagrant_for_ansible"]
+	path = vagrant_for_ansible
+	url = https://github.com/Varssos/vagrant_for_ansible.git
+	branch = master
