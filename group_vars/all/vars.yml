@@ -25,7 +25,10 @@ apt_packages:
   - dlt-viewer
 
   # more private
-  - anki
+  # - anki
+
+apt_packages_known_issues:
+  - anki # Not available on Ubuntu 25.04
 
 flatpak_packages:
   - com.brave.Browser

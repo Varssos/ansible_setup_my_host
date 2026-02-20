@@ -3,12 +3,21 @@
   apt:
     update_cache: yes
     upgrade: yes
-  ignore_errors: yes
+  retries: 3
+  delay: 10
+  register: result
+  until: result is success
 
 - name: Install essential packages
   package:
     name: "{{ apt_packages }}"
     state: latest
+
+- name: Install packages with known issues
+  package:
+    name: "{{ apt_packages_known_issues }}"
+    state: latest
+  ignore_errors: yes
 
 - name: Install flatpak
   apt:

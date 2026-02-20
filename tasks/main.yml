@@ -9,7 +9,6 @@
   when: "'google-chrome-stable' not in ansible_facts.packages"
 - include_tasks: coolercontrol.yml
   when: "'coolercontrol' not in ansible_facts.packages"
-# - include_tasks: dotfiles.yml
 - include_tasks: fzf.yml
   when: "'fzf' not in ansible_facts.packages"
 - include_tasks: grub-customizer.yml
@@ -29,9 +28,9 @@
 
 
 # More private applications
-# - include_tasks: signal.yml
-#   when: "'signal-desktop' not in ansible_facts.packages"
-# - include_tasks: spotify.yml
-#   when: "'spotify-client' not in ansible_facts.packages"
+- include_tasks: signal.yml
+  when: "'signal-desktop' not in ansible_facts.packages"
+- include_tasks: spotify.yml
+  when: "'spotify-client' not in ansible_facts.packages"
 # - include_tasks: tailscale.yml
-# - include_tasks: xdotool.yml
+- include_tasks: xdotool.yml

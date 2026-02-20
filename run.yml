@@ -1,5 +1,5 @@
 ---
-- hosts: laptop_acer
+- hosts: localhost
   become: yes
 
   tasks:

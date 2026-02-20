@@ -6,7 +6,8 @@ Supported platforms:
     - 24.04
     - 25.04
 - Mint:
-    - Wilma 22
+    - Zara 22.2
+    - Zena 22.3
 
 ## Prerequisities
 
