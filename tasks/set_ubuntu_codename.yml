@@ -1,6 +1,7 @@
 ---
-- name: Get Ubuntu codename
-  shell: . /etc/os-release && echo $UBUNTU_CODENAME
+# UBUNTU_CODENAME is not available on Debian so fallback to VERSION_CODENAME
+- name: Get Ubuntu codename or fallback to VERSION_CODENAME
+  shell: . /etc/os-release && echo ${UBUNTU_CODENAME:-$VERSION_CODENAME}
   register: _ubuntu_codename
   changed_when: false
 

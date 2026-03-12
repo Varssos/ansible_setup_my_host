@@ -11,7 +11,6 @@ apt_packages:
   - filezilla
   - meld
   - kdiff3
-  - rpi-imager
   - shutter
   - remmina
   - gparted
@@ -29,6 +28,7 @@ apt_packages:
 
 apt_packages_known_issues:
   - anki # Not available on Ubuntu 25.04
+  - rpi-imager # Not available on Debian 13.1
 
 flatpak_packages:
   - com.brave.Browser

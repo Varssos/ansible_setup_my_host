@@ -1,7 +1,9 @@
 ---
 # Using shell because if you use builtin: ansible.builtin.apt_repository it takes wrong system codename. On Mint it takes Mint's like Victoria, but it should jammy!
+
 - name: Add PPA repository for grub-customizer
   shell: sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
+  ignore_errors: yes # Debian don't need any PPAs so just continue to install from default repository
 
 - name: Install Grub Customizer
   apt:

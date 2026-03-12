@@ -18,3 +18,6 @@ ubuntu2504 ansible_host=localhost ansible_user=test_user ansible_connection=ssh 
 # linuxmint22wilma ansible_host=localhost ansible_user=test_user ansible_connection=ssh ansible_ssh_port=3220 ansible_ssh_common_args='-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 linuxmint222zara ansible_host=localhost ansible_user=test_user ansible_connection=ssh ansible_ssh_port=3222 ansible_ssh_common_args='-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 linuxmint223zena ansible_host=localhost ansible_user=test_user ansible_connection=ssh ansible_ssh_port=3223 ansible_ssh_common_args='-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+
+# Debian
+debian131 ansible_host=localhost ansible_user=test_user ansible_connection=ssh ansible_ssh_port=4131 ansible_ssh_common_args='-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
