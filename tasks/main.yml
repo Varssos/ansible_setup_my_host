@@ -1,7 +1,6 @@
 ---
 - include_tasks: essential.yml
 - include_tasks: collect_packages.yml
-- include_tasks: set_ubuntu_codename.yml
 
 
 # Custom applications which are more complex to install than apt install
@@ -25,12 +24,14 @@
   when: "'code' not in ansible_facts.packages"
 - include_tasks: wireshark.yml
   when: "'wireshark' not in ansible_facts.packages"
+- include_tasks: wine.yml
+  when: "'winehq-stable' not in ansible_facts.packages"
 
 
 # More private applications
 - include_tasks: signal.yml
   when: "'signal-desktop' not in ansible_facts.packages"
-- include_tasks: spotify.yml
-  when: "'spotify-client' not in ansible_facts.packages"
+# - include_tasks: spotify.yml
+#   when: "'spotify-client' not in ansible_facts.packages"
 # - include_tasks: tailscale.yml
 - include_tasks: xdotool.yml

@@ -34,8 +34,18 @@ flatpak_packages:
   - com.brave.Browser
   - com.discordapp.Discord
   - net.werwolv.ImHex
+  - com.spotify.Client
 
 
 # NoMachine
 nomachine_deb_url: "https://www.nomachine.com/free/linux/64/deb"
 nomachine_deb_file: "nomachine.deb"
+
+
+# Roles variables
+## geerlingguy.docker
+# Note: geerlingguy.docker v8 uses deb822_repository with suites: ansible_facts.distribution_release
+# For Linux Mint, this is overridden in tasks/set_ubuntu_codename.yml (pre_tasks)
+# to use the Ubuntu base codename (UBUNTU_CODENAME from /etc/os-release) instead of Mint's codename.
+docker_users:
+  - "{{ ansible_user }}"

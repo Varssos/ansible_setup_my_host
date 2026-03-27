@@ -1,4 +1,8 @@
 ---
+collections:
+  - name: community.docker
+
+
 roles:
-  # Is it needed?
-  - name: buluma.virtualbox
+  - name: geerlingguy.docker
+  - name: geerlingguy.pip

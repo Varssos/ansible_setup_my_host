@@ -2,8 +2,13 @@
 - hosts: docker
   become: yes
 
+  pre_tasks:
+    - import_tasks: tasks/set_ubuntu_codename.yml
+
   tasks:
     - import_tasks: tasks/main.yml
-  
+
   roles:
+    - role: geerlingguy.pip
+    - role: geerlingguy.docker
     - dotfiles

@@ -1,3 +1,4 @@
+# Switched to flatpak due to spotify-client package requiring libc6 >= 2.39, not available on Ubuntu 22.04
 ---
 - name: Download Spotify GPG key
   get_url:
@@ -22,3 +23,4 @@
     name: spotify-client
     state: present
     update_cache: yes
+  ignore_errors: yes  # spotify-client requires libc6 >= 2.39, not available on Ubuntu 22.04

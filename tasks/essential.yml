@@ -1,8 +1,23 @@
 ---
+# grub-pc ends up in partially-configured state after Vagrant provisioning on Debian.
+# Pre-set debconf to accept empty install devices so dpkg --configure can finish.
+- name: Pre-configure grub-pc to use no install devices (Debian Vagrant fix)
+  shell: |
+    echo "grub-pc grub-pc/install_devices_empty boolean true" | debconf-set-selections
+    echo "grub-pc grub-pc/install_devices string" | debconf-set-selections
+    dpkg --force-confdef --configure grub-pc
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+  when: ansible_distribution == "Debian"
+  changed_when: false
+  failed_when: false
+
 - name: Update packages
   apt:
     update_cache: yes
     upgrade: yes
+  environment:
+    DEBIAN_FRONTEND: noninteractive
   retries: 3
   delay: 10
   register: result
