@@ -1,0 +1,49 @@
+- name: Install CopyQ package
+  ansible.builtin.package:
+    name: copyq
+    state: present
+
+- name: Start copyq daemon
+  ansible.builtin.shell:
+    cmd: copyq --start-server
+  ignore_errors: yes # Failing in VM becuase it requires QT, gui etc
+
+- name: Set "Show the tray menu" global shortcut using copyq eval
+  ansible.builtin.shell:
+    cmd: |
+      copyq eval '
+          var cmds = commands();
+          var found = false;
+          var shortcut = ["ctrl+shift+v"];
+
+          for (var i in cmds) {
+              if (cmds[i].name === "Show the tray menu") {
+                  cmds[i].cmd = "copyq menu";
+                  cmds[i].shortcuts = shortcut;
+                  cmds[i].globalShortcuts = shortcut;
+                  cmds[i].isGlobalShortcut = true;
+                  cmds[i].enable = true;
+                  found = true;
+                  break;
+              }
+          }
+
+          if (!found) {
+              cmds.push({
+                  "name": "Show the tray menu",
+                  "cmd": "copyq menu",
+                  "shortcuts": shortcut,
+                  "globalShortcuts": shortcut,
+                  "isGlobalShortcut": true,
+                  "enable": true
+              });
+          }
+
+          setCommands(cmds);
+          '
+  retries: 3
+  delay: 2
+  until: copyq_result.rc == 0
+  register: copyq_result
+  ignore_errors: yes # Failing in VM becuase it requires QT, gui etc
+
