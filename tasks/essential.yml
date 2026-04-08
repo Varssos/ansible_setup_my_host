@@ -28,11 +28,6 @@
     name: "{{ apt_packages }}"
     state: latest
 
-- name: Install packages with known issues
-  package:
-    name: "{{ apt_packages_known_issues }}"
-    state: latest
-  ignore_errors: yes
 
 - name: Install flatpak
   apt:
@@ -47,3 +42,17 @@
     name: "{{ flatpak_packages }}"
     state: present
     remote: flathub
+
+- name: Install private apt packages
+  package:
+    name: "{{ apt_packages_private }}"
+    state: latest
+  when: is_private_machine
+  ignore_errors: yes
+
+- name: Install private Flatpak packages
+  flatpak:
+    name: "{{ flatpak_packages_private }}"
+    state: present
+    remote: flathub
+  when: is_private_machine

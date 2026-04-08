@@ -32,8 +32,9 @@
 
 # More private applications
 - include_tasks: signal.yml
-  when: "'signal-desktop' not in ansible_facts.packages"
-# - include_tasks: spotify.yml
-#   when: "'spotify-client' not in ansible_facts.packages"
-# - include_tasks: tailscale.yml
+  when: is_private_machine and 'signal-desktop' not in ansible_facts.packages
+- include_tasks: spotify.yml
+  when: is_private_machine and 'spotify-client' not in ansible_facts.packages
+- include_tasks: tailscale.yml
+  when: is_private_machine
 - include_tasks: xdotool.yml

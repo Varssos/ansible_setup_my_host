@@ -13,9 +13,10 @@ Temporarily disabled:
 - Ubuntu 25.04
 - Mint Zara 22.2
 
-## Prerequisities
+## Config/variables
 
-First replace `ansible_user` in `hosts`
+- Replace `ansible_user` in `hosts`
+- In `group_vars/all/vars.yml` set `is_private_machine` to `true` or `false`
 
 ## Add submodules
 
@@ -48,6 +49,8 @@ export TAILSCALE_KEY="HERE_YOUR_KEY_FROM_SETTINGS_AUTH_KEYS"
 
 ```
 ansible-playbook run.yml -K
+# Or on private machine
+ansible-playbook run.yml -K -e "is_private_machine=true"
 ```
 
 ## TODO after installation

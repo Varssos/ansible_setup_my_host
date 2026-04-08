@@ -1,21 +1,33 @@
 ---
+- name: Pre-configure wireshark-common to allow non-superusers to capture packets
+  debconf:
+    name: wireshark-common
+    question: wireshark-common/install-setuid
+    value: "true"
+    vtype: boolean
+
 - name: Install Wireshark package
   apt:
     name: wireshark
     state: present
 
-- name: Check if wireshark group exist
+- name: Reconfigure wireshark-common (sets dumpcap group + permissions)
+  command: dpkg-reconfigure -f noninteractive wireshark-common
+  changed_when: false
+
+- name: Ensure wireshark group exists
   group:
     name: wireshark
     state: present
 
-- name: Add user to Wireshark group (optional, to run Wireshark without root)
+- name: Add user to Wireshark group (to run Wireshark without root)
   user:
     name: "{{ ansible_user }}"
     groups: wireshark
     append: yes
 
 - name: Set capabilities for dumpcap
-  command: setcap cap_net_raw,cap_net_admin+eip /usr/bin/dumpcap
-  args:
-    creates: /usr/bin/dumpcap
+  community.general.capabilities:
+    path: /usr/bin/dumpcap
+    capability: cap_net_raw,cap_net_admin+eip
+    state: present

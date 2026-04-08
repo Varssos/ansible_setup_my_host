@@ -1,3 +1,6 @@
+# Set to true on personal machines to also install private packages
+is_private_machine: false
+
 apt_packages:
   # basic tools
   - apt-transport-https
@@ -19,21 +22,22 @@ apt_packages:
   - gimp
   - nmap
   - libimage-exiftool-perl
-  
+
   # automotive
   - dlt-viewer
 
-  # more private
-  # - anki
-
-apt_packages_known_issues:
+apt_packages_private:
   - anki # Not available on Ubuntu 25.04
   - rpi-imager # Not available on Debian 13.1
 
+
+
 flatpak_packages:
+  - net.werwolv.ImHex
+
+flatpak_packages_private:
   - com.brave.Browser
   - com.discordapp.Discord
-  - net.werwolv.ImHex
   - com.spotify.Client
 
 
