@@ -9,3 +9,6 @@
 [submodule "roles/nomachine"]
 	path = roles/nomachine
 	url = https://github.com/Varssos/ansible-role-nomachine.git
+[submodule "roles/chrome"]
+	path = roles/chrome
+	url = https://github.com/Varssos/ansible-role-chrome.git

@@ -77,6 +77,10 @@ cd vagrant_for_ansible
 ```
 
 
+## Useful docs
+
+- [Publishing a role to Ansible Galaxy](docs/ansible_galaxy_role.md)
+
 ## Known issues
 - `spotify-client` requires `libc6 >= 2.39` — not installable on Ubuntu 22.04 (has 2.35). Skipped with `ignore_errors`.
 - `anki` not available on Debian 13.1. Skipped with `ignore_errors`.

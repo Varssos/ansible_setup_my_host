@@ -6,3 +6,7 @@ collections:
 roles:
   - name: geerlingguy.docker
   - name: geerlingguy.pip
+
+  # My roles
+#  - name: Varssos.nomachine
+#  - name: Varssos.chrome
