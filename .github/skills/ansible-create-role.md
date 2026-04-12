@@ -217,7 +217,16 @@ Replace the `include_tasks` line with a comment:
 # <tool> is handled by the <rolename> role in run.yml
 ```
 
-### 3. .gitignore — Galaxy roles are auto-ignored
+### 3. Delete the old task file
+
+After confirming the role works correctly, delete the original task file:
+```bash
+rm tasks/<rolename>.yml
+```
+
+Do NOT delete it before testing — keep it until the role is verified on at least one platform.
+
+### 4. .gitignore — Galaxy roles are auto-ignored
 
 Galaxy-installed roles (format `namespace.rolename`) are already ignored via:
 ```
@@ -246,6 +255,7 @@ After creating the role locally, provide this summary to the user:
 - [ ] `roles/<rolename>/README.md` created
 - [ ] `run.yml` updated (role added)
 - [ ] `tasks/main.yml` updated (old include_tasks removed/commented)
+- [ ] `tasks/<rolename>.yml` deleted (after verifying role works)
 
 ### GitHub (manual)
 - [ ] Create repo `ansible-role-<rolename>` on GitHub

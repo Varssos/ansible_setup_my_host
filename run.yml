@@ -13,4 +13,5 @@
     - geerlingguy.docker
     - dotfiles
     - chrome
+    - fzf
     - nomachine

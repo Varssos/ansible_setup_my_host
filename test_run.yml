@@ -12,5 +12,7 @@
     - geerlingguy.pip
     - geerlingguy.docker
     - dotfiles
-    - nomachine
     - chrome
+    - fzf
+    - nomachine
+    

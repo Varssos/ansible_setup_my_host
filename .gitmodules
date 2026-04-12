@@ -12,3 +12,6 @@
 [submodule "roles/chrome"]
 	path = roles/chrome
 	url = https://github.com/Varssos/ansible-role-chrome.git
+[submodule "roles/fzf"]
+	path = roles/fzf
+	url = https://github.com/Varssos/ansible-role-fzf.git
