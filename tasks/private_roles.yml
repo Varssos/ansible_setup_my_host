@@ -3,10 +3,12 @@
   ansible.builtin.include_role:
     name: signal
 
+- name: Install Tailscale
+  ansible.builtin.include_role:
+    name: tailscale
+
 # - name: Install Spotify
 #   ansible.builtin.include_role:
 #     name: spotify
-
-# - name: Install Tailscale
 #   ansible.builtin.include_role:
 #     name: tailscale
