@@ -6,3 +6,6 @@
 	path = vagrant_for_ansible
 	url = https://github.com/Varssos/vagrant_for_ansible.git
 	branch = master
+[submodule "roles/nomachine"]
+	path = roles/nomachine
+	url = https://github.com/Varssos/ansible-role-nomachine.git

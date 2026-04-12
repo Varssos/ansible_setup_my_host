@@ -9,6 +9,7 @@
     - import_tasks: tasks/main.yml
 
   roles:
-    # - role: geerlingguy.pip
-    # - role: geerlingguy.docker
+    - role: geerlingguy.pip
+    - role: geerlingguy.docker
     - dotfiles
+    - nomachine

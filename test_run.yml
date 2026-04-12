@@ -1,5 +1,5 @@
 ---
-- hosts: docker
+- hosts: vagrant
   become: yes
 
   pre_tasks:
@@ -12,3 +12,4 @@
     - role: geerlingguy.pip
     - role: geerlingguy.docker
     - dotfiles
+    - nomachine
