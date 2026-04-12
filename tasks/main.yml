@@ -7,8 +7,7 @@
 # coolercontrol is handled by the coolercontrol role in run.yml
 - include_tasks: copyq.yml
 
-- include_tasks: klogg.yml
-  when: "'klogg' not in ansible_facts.packages"
+# klogg is handled by the klogg role in run.yml
 - include_tasks: nomachine.yml
   when: "'nomachine' not in ansible_facts.packages"
 - include_tasks: sublime.yml

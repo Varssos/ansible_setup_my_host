@@ -24,3 +24,6 @@
 [submodule "roles/coolercontrol"]
 	path = roles/coolercontrol
 	url = https://github.com/Varssos/coolercontrol.git
+[submodule "roles/klogg"]
+	path = roles/klogg
+	url = https://github.com/Varssos/ansible-role-klogg.git
