@@ -3,19 +3,7 @@
 - include_tasks: collect_packages.yml
 
 
-# Custom applications which are more complex to install than apt install
-- include_tasks: copyq.yml
-- include_tasks: virtualbox.yml
-  when: "'virtualbox-7.1' not in ansible_facts.packages"
-- include_tasks: vscode.yml
-  when: "'code' not in ansible_facts.packages"
-- include_tasks: wireshark.yml
-  when: "'wireshark' not in ansible_facts.packages"
-- include_tasks: wine.yml
-  when: "'winehq-stable' not in ansible_facts.packages"
-
 
 # More private applications
 - include_tasks: private_roles.yml
   when: is_private_machine
-- include_tasks: xdotool.yml

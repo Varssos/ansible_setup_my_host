@@ -36,3 +36,21 @@
 [submodule "roles/tailscale"]
 	path = roles/tailscale
 	url = https://github.com/Varssos/ansible-role-tailscale.git
+[submodule "roles/virtualbox"]
+	path = roles/virtualbox
+	url = https://github.com/Varssos/ansible-role-virtualbox.git
+[submodule "roles/vscode"]
+	path = roles/vscode
+	url = https://github.com/Varssos/ansible-role-vscode.git
+[submodule "roles/wine"]
+	path = roles/wine
+	url = https://github.com/Varssos/ansible-role-wine.git
+[submodule "roles/wireshark"]
+	path = roles/wireshark
+	url = https://github.com/Varssos/ansible-role-wireshark.git
+[submodule "roles/xdotool"]
+	path = roles/xdotool
+	url = https://github.com/Varssos/ansible-role-xdotool.git
+[submodule "roles/copyq"]
+	path = roles/copyq
+	url = https://github.com/Varssos/ansible-role-copyq.git

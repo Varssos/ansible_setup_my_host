@@ -7,8 +7,6 @@
   ansible.builtin.include_role:
     name: tailscale
 
-# - name: Install Spotify
-#   ansible.builtin.include_role:
-#     name: spotify
-#   ansible.builtin.include_role:
-#     name: tailscale
+- name: Install xdotool
+  ansible.builtin.include_role:
+    name: xdotool
