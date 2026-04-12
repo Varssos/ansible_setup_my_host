@@ -3,7 +3,9 @@
   become: yes
 
   pre_tasks:
-    - import_tasks: tasks/set_ubuntu_codename.yml
+    - name: Set ubuntu_codename fact
+      import_role:
+        name: ubuntu-codename
 
   tasks:
     - import_tasks: tasks/main.yml
@@ -14,5 +16,6 @@
     - dotfiles
     - chrome
     - fzf
+    - grub-customizer
     - nomachine
     

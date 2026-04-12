@@ -8,8 +8,6 @@
   when: "'coolercontrol' not in ansible_facts.packages"
 - include_tasks: copyq.yml
 
-- include_tasks: grub-customizer.yml
-  when: "'grub-customizer' not in ansible_facts.packages"
 - include_tasks: klogg.yml
   when: "'klogg' not in ansible_facts.packages"
 - include_tasks: nomachine.yml

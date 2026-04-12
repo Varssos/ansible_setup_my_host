@@ -15,3 +15,9 @@
 [submodule "roles/fzf"]
 	path = roles/fzf
 	url = https://github.com/Varssos/ansible-role-fzf.git
+[submodule "roles/grub-customizer"]
+	path = roles/grub-customizer
+	url = https://github.com/Varssos/ansible-role-grub-customizer.git
+[submodule "roles/ubuntu-codename"]
+	path = roles/ubuntu-codename
+	url = https://github.com/Varssos/ubuntu-codename.git
