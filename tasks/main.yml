@@ -4,8 +4,7 @@
 
 
 # Custom applications which are more complex to install than apt install
-- include_tasks: coolercontrol.yml
-  when: "'coolercontrol' not in ansible_facts.packages"
+# coolercontrol is handled by the coolercontrol role in run.yml
 - include_tasks: copyq.yml
 
 - include_tasks: klogg.yml

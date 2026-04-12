@@ -15,6 +15,7 @@
     - geerlingguy.docker
     - dotfiles
     - chrome
+    - coolercontrol
     - fzf
     - grub-customizer
     - nomachine

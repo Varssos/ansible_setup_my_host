@@ -199,7 +199,10 @@ Varssos
 
 ## Integration into the project
 
-### 1. run.yml — add the role
+### 1. run.yml AND test_run.yml — add the role to both
+
+Both files must be kept in sync — `run.yml` targets `localhost`, `test_run.yml` targets `vagrant`.
+Add the role to the `roles:` section in **both** files:
 
 ```yaml
   roles:
@@ -207,7 +210,7 @@ Varssos
     - <rolename>
 ```
 
-Roles in `run.yml` replace `include_tasks` in `tasks/main.yml`. After moving to a
+Roles in `run.yml`/`test_run.yml` replace `include_tasks` in `tasks/main.yml`. After moving to a
 role, remove or comment out the corresponding `include_tasks` line in `tasks/main.yml`.
 
 ### 2. tasks/main.yml — remove the old task include
@@ -254,6 +257,7 @@ After creating the role locally, provide this summary to the user:
 - [ ] `roles/<rolename>/meta/main.yml` created
 - [ ] `roles/<rolename>/README.md` created
 - [ ] `run.yml` updated (role added)
+- [ ] `test_run.yml` updated (role added)
 - [ ] `tasks/main.yml` updated (old include_tasks removed/commented)
 - [ ] `tasks/<rolename>.yml` deleted (after verifying role works)
 

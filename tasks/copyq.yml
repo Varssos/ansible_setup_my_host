@@ -41,8 +41,8 @@
 
           setCommands(cmds);
           '
-  retries: 3
-  delay: 2
+  retries: 2
+  delay: 1
   until: copyq_result.rc == 0
   register: copyq_result
   ignore_errors: yes # Failing in VM becuase it requires QT, gui etc
