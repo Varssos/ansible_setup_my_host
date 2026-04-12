@@ -4,12 +4,7 @@
 
 
 # Custom applications which are more complex to install than apt install
-# coolercontrol is handled by the coolercontrol role in run.yml
 - include_tasks: copyq.yml
-
-# klogg is handled by the klogg role in run.yml
-- include_tasks: nomachine.yml
-  when: "'nomachine' not in ansible_facts.packages"
 - include_tasks: sublime.yml
   when: "'sublime-text' not in ansible_facts.packages"
 - include_tasks: virtualbox.yml
@@ -23,10 +18,8 @@
 
 
 # More private applications
-- include_tasks: signal.yml
-  when: is_private_machine and 'signal-desktop' not in ansible_facts.packages
-- include_tasks: spotify.yml
-  when: is_private_machine and 'spotify-client' not in ansible_facts.packages
+- include_tasks: private_roles.yml
+  when: is_private_machine
 - include_tasks: tailscale.yml
   when: is_private_machine
 - include_tasks: xdotool.yml

@@ -1,6 +1,14 @@
 ---
+- name: Check if tailscale is already installed
+  ansible.builtin.command: which tailscale
+  register: tailscale_installed
+  failed_when: false
+  changed_when: false
+
 - name: Install tailscale
-  shell: curl -fsSL https://tailscale.com/install.sh | sh
+  ansible.builtin.shell: curl -fsSL https://tailscale.com/install.sh | sh
+  when: tailscale_installed.rc != 0
 
 - name: Login to tailscale network
-  shell: sudo tailscale up --auth-key="{{ lookup('env', 'TAILSCALE_KEY') }}"
+  ansible.builtin.shell: tailscale up --auth-key="{{ lookup('env', 'TAILSCALE_KEY') }}"
+  when: lookup('env', 'TAILSCALE_KEY') != ''

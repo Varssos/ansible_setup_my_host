@@ -27,3 +27,6 @@
 [submodule "roles/klogg"]
 	path = roles/klogg
 	url = https://github.com/Varssos/ansible-role-klogg.git
+[submodule "roles/signal"]
+	path = roles/signal
+	url = https://github.com/Varssos/ansible-role-signal.git
