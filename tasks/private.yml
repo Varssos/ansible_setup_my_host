@@ -1,0 +1,25 @@
+---
+- name: Install private apt packages
+  ansible.builtin.package:
+    name: "{{ apt_packages_private }}"
+    state: present
+  # Some packages may not be available on all distributions (see comments in vars.yml)
+  failed_when: false
+
+- name: Install private Flatpak packages
+  community.general.flatpak:
+    name: "{{ flatpak_packages_private }}"
+    state: present
+    remote: flathub
+
+- name: Install Signal
+  ansible.builtin.include_role:
+    name: signal
+
+- name: Install Tailscale
+  ansible.builtin.include_role:
+    name: tailscale
+
+- name: Install xdotool
+  ansible.builtin.include_role:
+    name: xdotool

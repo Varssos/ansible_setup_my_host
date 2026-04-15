@@ -3,13 +3,12 @@ is_private_machine: false
 
 apt_packages:
   # basic tools
-  - apt-transport-https
   - vim
   - htop
   - screenfetch
   - curl
 
-  # Usefull tools
+  # Useful tools
   - speedtest-cli
   - filezilla
   - meld
@@ -17,7 +16,6 @@ apt_packages:
   - shutter
   - remmina
   - gparted
-  - xdotool
   - shellcheck
   - gimp
   - nmap
@@ -29,8 +27,6 @@ apt_packages:
 apt_packages_private:
   - anki # Not available on Ubuntu 25.04
   - rpi-imager # Not available on Debian 13.1
-
-
 
 flatpak_packages:
   - net.werwolv.ImHex
@@ -44,7 +40,7 @@ flatpak_packages_private:
 # Roles variables
 ## geerlingguy.docker
 # Note: geerlingguy.docker v8 uses deb822_repository with suites: ansible_facts.distribution_release
-# For Linux Mint, this is overridden in tasks/set_ubuntu_codename.yml (pre_tasks)
+# For Linux Mint, this is overridden in roles/ubuntu-codename/tasks/main.yml (pre_tasks)
 # to use the Ubuntu base codename (UBUNTU_CODENAME from /etc/os-release) instead of Mint's codename.
 docker_users:
   - "{{ ansible_user }}"

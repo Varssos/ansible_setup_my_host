@@ -1,0 +1,33 @@
+---
+- hosts: "{{ target_hosts }}"
+  become: yes
+
+  pre_tasks:
+    - name: Set ubuntu_codename fact
+      import_role:
+        name: ubuntu-codename
+
+    - name: Run essential setup
+      import_tasks: tasks/essential.yml
+
+  roles:
+    - geerlingguy.pip
+    - geerlingguy.docker
+    - dotfiles
+    - chrome
+    - coolercontrol
+    - fzf
+    - grub-customizer
+    - klogg
+    - nomachine
+    - sublime
+    - virtualbox
+    - vscode
+    - wine
+    - wireshark
+    - copyq
+
+  post_tasks:
+    - name: Run private applications
+      include_tasks: tasks/private.yml
+      when: is_private_machine

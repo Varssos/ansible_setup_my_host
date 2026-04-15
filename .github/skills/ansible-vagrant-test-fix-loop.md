@@ -72,24 +72,33 @@ Extract:
 - **task name** – the line above `FAILED!` starting with `TASK [`
 - **msg** – content of `"msg":` inside the JSON block
 
-Map task name → file using `tasks/main.yml`:
+Map task name → role using the `roles:` list in `site.yml`:
 
-| Task file              | Condition in main.yml                                      |
-|------------------------|------------------------------------------------------------|
-| `tasks/essential.yml`  | always runs (no `when:`)                                   |
-| `tasks/chrome.yml`     | `when: 'google-chrome-stable' not in ansible_facts.packages` |
-| `tasks/coolercontrol.yml` | `when: 'coolercontrol' not in ansible_facts.packages`   |
-| `tasks/fzf.yml`        | `when: 'fzf' not in ansible_facts.packages`               |
-| `tasks/grub-customizer.yml` | `when: 'grub-customizer' not in ansible_facts.packages` |
-| `tasks/klogg.yml`      | `when: 'klogg' not in ansible_facts.packages`             |
-| `tasks/nomachine.yml`  | `when: 'nomachine' not in ansible_facts.packages`         |
-| `tasks/sublime.yml`    | `when: 'sublime-text' not in ansible_facts.packages`      |
-| `tasks/virtualbox.yml` | `when: 'virtualbox-7.1' not in ansible_facts.packages`    |
-| `tasks/vscode.yml`     | `when: 'code' not in ansible_facts.packages`              |
-| `tasks/wireshark.yml`  | `when: 'wireshark' not in ansible_facts.packages`         |
-| `tasks/signal.yml`     | `when: 'signal-desktop' not in ansible_facts.packages`    |
-| `tasks/spotify.yml`    | `when: 'spotify-client' not in ansible_facts.packages`    |
-| `tasks/xdotool.yml`    | always runs (no `when:`)                                   |
+| Role name        | What it installs                                      |
+|------------------|-------------------------------------------------------|
+| `chrome`         | Google Chrome (.deb download pattern)                 |
+| `coolercontrol`  | CoolerControl via curl setup script                   |
+| `copyq`          | CopyQ clipboard manager                               |
+| `fzf`            | fzf fuzzy finder + key bindings in .bashrc            |
+| `grub-customizer`| Grub Customizer via PPA (ignored on Debian)           |
+| `klogg`          | klogg log viewer (GPG+repo, hardcoded `jammy`)        |
+| `nomachine`      | NoMachine .deb via `nomachine_deb_url` in group_vars  |
+| `sublime`        | Sublime Text (GPG+repo pattern)                       |
+| `virtualbox`     | VirtualBox (GPG+repo, uses `ubuntu_codename`)         |
+| `vscode`         | Visual Studio Code (Microsoft GPG+repo pattern)       |
+| `wine`           | WineHQ stable (GPG+repo, uses `ubuntu_codename`)      |
+| `wireshark`      | Wireshark + dumpcap group permissions                 |
+| `geerlingguy.docker` | Docker CE                                         |
+| `geerlingguy.pip`    | pip                                               |
+| `dotfiles`       | dotfiles setup                                        |
+
+Private roles (run only when `is_private_machine: true`, via `tasks/private.yml` in post_tasks):
+
+| Role name  | What it installs           |
+|------------|----------------------------|
+| `signal`   | Signal messenger           |
+| `tailscale`| Tailscale VPN              |
+| `xdotool`  | xdotool + idle.sh script   |
 
 ### 2b. Vagrant provisioning failures
 
@@ -126,15 +135,16 @@ Unable to locate package <name>
 **Fix strategy:**
 
 1. Identify which OS(es) it fails on.
-2. If it fails only on **some** OS versions → move from `apt_packages` to
-   `apt_packages_known_issues` in `group_vars/all/vars.yml`:
+2. If it fails only on **some** OS versions → add a comment to the package entry
+   in `apt_packages_private` in `group_vars/all/vars.yml`. The task already uses
+   `failed_when: false` so it will not break the run:
 
 ```yaml
 # group_vars/all/vars.yml
-apt_packages_known_issues:
-  - anki          # Not available on Ubuntu 25.04
-  - rpi-imager    # Not available on Debian 13.1
-  - <new_package> # Not available on <OS version>
+apt_packages_private:
+  - anki       # Not available on Ubuntu 25.04
+  - rpi-imager # Not available on Debian 13.1
+  - <package>  # Not available on <OS version>
 ```
 
 3. If it fails on **all** OS versions → the package name changed or the repo is
@@ -383,36 +393,42 @@ Repeat until all targeted platforms pass:
 
 ```
 ansible_setup_my_host/
-├── hosts                        ← SSH targets for Vagrant VMs + real hosts
-├── run.yml                      ← main playbook (localhost / real hosts)
-├── test_run.yml                 ← test playbook (Vagrant VMs, group: docker)
-├── group_vars/all/vars.yml      ← apt_packages, apt_packages_known_issues,
-│                                   flatpak_packages, nomachine_deb_url
+├── hosts                        ← inventory: SSH targets (nas, laptop, vagrant VMs)
+│                                    localhost uses ansible_connection=local (no ansible_user needed)
+├── site.yml                     ← main playbook logic (pre_tasks + roles + post_tasks)
+├── run.yml                      ← thin wrapper: import_playbook site.yml, target_hosts=local
+├── test_run.yml                 ← thin wrapper: import_playbook site.yml, target_hosts=vagrant
+├── group_vars/
+│   ├── all/vars.yml             ← apt_packages, flatpak_packages, apt_packages_private,
+│   │                               flatpak_packages_private, nomachine_deb_url, docker_users
+│   │                               is_private_machine: false (default)
+│   └── vagrant/vars.yml         ← is_private_machine: true (for all vagrant VMs)
 ├── tasks/
-│   ├── main.yml                 ← orchestrates all tasks, with when: guards
-│   ├── essential.yml            ← apt upgrade + apt_packages + flatpak
-│   ├── collect_packages.yml     ← package_facts (must run before when: guards)
-│   ├── set_ubuntu_codename.yml  ← sets {{ ubuntu_codename }} fact
-│   ├── chrome.yml               ← .deb download pattern
-│   ├── coolercontrol.yml        ← curl-script GPG pattern
-│   ├── fzf.yml                  ← apt + .bashrc lineinfile
-│   ├── grub-customizer.yml
-│   ├── klogg.yml                ← GPG+repo pattern, hardcoded jammy
-│   ├── nomachine.yml            ← .deb download via group_vars URL
-│   ├── signal.yml               ← GPG+repo pattern
-│   ├── spotify.yml
-│   ├── sublime.yml
-│   ├── tailscale.yml            ← curl | sh + TAILSCALE_KEY env
-│   ├── virtualbox.yml
-│   ├── vscode.yml               ← GPG+repo pattern (Microsoft)
-│   ├── wireshark.yml
-│   └── xdotool.yml
+│   ├── essential.yml            ← apt upgrade + apt_packages + flatpak setup
+│   └── private.yml              ← apt_packages_private + flatpak_packages_private
+│                                   + include_role: signal, tailscale, xdotool
+├── roles/
+│   ├── ubuntu-codename/         ← sets {{ ubuntu_codename }} fact (run in pre_tasks)
+│   ├── chrome/                  ← .deb download pattern
+│   ├── coolercontrol/           ← curl setup script pattern
+│   ├── copyq/                   ← apt + copyq eval shortcut
+│   ├── fzf/                     ← apt + .bashrc lineinfile
+│   ├── grub-customizer/         ← add-apt-repository PPA (ignore_errors on Debian)
+│   ├── klogg/                   ← GPG+repo, hardcoded jammy codename
+│   ├── nomachine/               ← .deb download via nomachine_deb_url
+│   ├── signal/                  ← GPG+sources file pattern (private)
+│   ├── sublime/                 ← GPG+repo pattern
+│   ├── tailscale/               ← curl | sh + tailscale up (private)
+│   ├── virtualbox/              ← GPG+repo, uses ubuntu_codename
+│   ├── vscode/                  ← Microsoft GPG+repo pattern
+│   ├── wine/                    ← WineHQ GPG+repo, uses ubuntu_codename
+│   ├── wireshark/               ← apt + dumpcap capabilities + group
+│   └── xdotool/                 ← apt + idle.sh script (private)
 ├── run_status.md                ← per-OS test results (update after each run)
 └── vagrant_for_ansible/
     ├── Vagrantfile              ← VM definitions (ubuntu2204/2404, mint223zena, debian131)
-    ├── run.sh                   ← test runner script
-    │                               flags: ubuntu | debian | all | clean | help
-    └── hosts                   ← (not used, main hosts file is at project root)
+    └── run.sh                   ← test runner: vagrant up + ansible-playbook test_run.yml
+                                     flags: ubuntu | debian | all | clean | halt | snap-save | snap-restore
 ```
 
 ---

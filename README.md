@@ -15,8 +15,9 @@ Temporarily disabled:
 
 ## Config/variables
 
-- Replace `ansible_user` in `hosts`
-- In `group_vars/all/vars.yml` set `is_private_machine` to `true` or `false`
+- `ansible_user` is set per-host in [hosts](./hosts) — also explicitly for localhost (required by roles that use `{{ ansible_user }}`, e.g. docker, dotfiles, wireshark)
+- Set `is_private_machine: true` in [group_vars/all/vars.yml](group_vars/all/vars.yml) for private machine installs
+  - Already set to `true` for vagrant group in [group_vars/vagrant/vars.yml](group_vars/vagrant/vars.yml)
 
 ## Add submodules
 
@@ -49,9 +50,11 @@ export TAILSCALE_KEY="HERE_YOUR_KEY_FROM_SETTINGS_AUTH_KEYS"
 
 ```
 ansible-playbook run.yml -K
-# Or on private machine
+# Or on private machine (overrides group_vars default)
 ansible-playbook run.yml -K -e "is_private_machine=true"
 ```
+
+The main playbook logic lives in [site.yml](./site.yml). `run.yml` and `test_run.yml` are thin wrappers that set the target host group.
 
 ## TODO after installation
 ### Install private dotfiles
@@ -82,13 +85,6 @@ cd vagrant_for_ansible
 - [Publishing a role to Ansible Galaxy](docs/ansible_galaxy_role.md)
 
 ## Known issues
-- `spotify-client` requires `libc6 >= 2.39` — not installable on Ubuntu 22.04 (has 2.35). Skipped with `ignore_errors`.
-- `anki` not available on Debian 13.1. Skipped with `ignore_errors`.
+- `spotify-client` requires `libc6 >= 2.39` — not installable on Ubuntu 22.04 (has 2.35). Skipped with `failed_when: false` in `tasks/private.yml`.
+- `anki` and `rpi-imager` may not be available on all distributions — listed in `apt_packages_private` with `failed_when: false` in `tasks/private.yml`.
 - `grub-pc` ends up in partially-configured state after Vagrant provisioning on Debian — worked around with a `debconf-set-selections` pre-task in `tasks/essential.yml`.
-- [DEPRECATION WARNING]: The DependencyMixin is being deprecated. Modules should use community.general.plugins.module_utils.deps instead. This 
-feature will be removed from community.general in version 9.0.0. Deprecation warnings can be disabled by setting deprecation_warnings=False in 
-ansible.cfg.
-Just type:
-```
-ansible-galaxy collection install community.general
-```

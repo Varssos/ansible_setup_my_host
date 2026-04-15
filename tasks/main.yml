@@ -1,9 +1,0 @@
----
-- include_tasks: essential.yml
-- include_tasks: collect_packages.yml
-
-
-
-# More private applications
-- include_tasks: private_roles.yml
-  when: is_private_machine

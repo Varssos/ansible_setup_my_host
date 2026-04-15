@@ -2,7 +2,7 @@
 # grub-pc ends up in partially-configured state after Vagrant provisioning on Debian.
 # Pre-set debconf to accept empty install devices so dpkg --configure can finish.
 - name: Pre-configure grub-pc to use no install devices (Debian Vagrant fix)
-  shell: |
+  ansible.builtin.shell: |
     echo "grub-pc grub-pc/install_devices_empty boolean true" | debconf-set-selections
     echo "grub-pc grub-pc/install_devices string" | debconf-set-selections
     dpkg --force-confdef --configure grub-pc
@@ -13,7 +13,7 @@
   failed_when: false
 
 - name: Update packages
-  apt:
+  ansible.builtin.apt:
     update_cache: yes
     upgrade: yes
   environment:
@@ -24,35 +24,23 @@
   until: result is success
 
 - name: Install essential packages
-  package:
+  ansible.builtin.package:
     name: "{{ apt_packages }}"
-    state: latest
+    state: present
 
 
 - name: Install flatpak
-  apt:
+  ansible.builtin.apt:
     name: flatpak
     state: present
 
 - name: Add Flathub repository
-  command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  ansible.builtin.command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  changed_when: false
 
 - name: Install packages with Flatpak
-  flatpak:
+  community.general.flatpak:
     name: "{{ flatpak_packages }}"
     state: present
     remote: flathub
 
-- name: Install private apt packages
-  package:
-    name: "{{ apt_packages_private }}"
-    state: latest
-  when: is_private_machine
-  ignore_errors: yes
-
-- name: Install private Flatpak packages
-  flatpak:
-    name: "{{ flatpak_packages_private }}"
-    state: present
-    remote: flathub
-  when: is_private_machine

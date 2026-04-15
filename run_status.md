@@ -23,5 +23,5 @@
 
 ## Debian 13.1
 ✅ OK - 2026-03-27
-- ⚠️ anki ignored — not available on Debian 13.1 (apt_packages_known_issues)
+- ⚠️ anki ignored — not available on Debian 13.1 (apt_packages_private, failed_when: false)
 - ⚠️ grub-customizer add-apt-repository ignored — command not available on Debian (PPA), package installed directly

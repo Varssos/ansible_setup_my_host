@@ -1,5 +1,5 @@
 [local]
-localhost ansible_connection=local ansible_user=
+localhost ansible_connection=local ansible_user=sebastianwa
 
 [nas]
 seba_nas ansible_host=192.168.0.62 ansible_user=seba_nas ansible_connection=ssh ansible_ssh_private_key_file=~/.ssh/seba_nas ansible_ssh_port=69
