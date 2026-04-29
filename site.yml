@@ -17,7 +17,7 @@
     - chrome
     - coolercontrol
     - fzf
-    - grub-customizer
+    - grub-customizer # Not working on the Ubuntu 26.04 
     - klogg
     - nomachine
     - sublime
