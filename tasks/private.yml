@@ -20,6 +20,10 @@
   ansible.builtin.include_role:
     name: tailscale
 
+- name: Install Wine
+  ansible.builtin.include_role:
+    name: wine
+
 - name: Install xdotool
   ansible.builtin.include_role:
     name: xdotool
