@@ -17,9 +17,9 @@
     - chrome
     - coolercontrol
     - fzf
-    - grub-customizer # Not working on the Ubuntu 26.04 
+    - grub-customizer
     - klogg
-    - nomachine
+    # - nomachine # not working due to different links and 14 day trial license
     - sublime
     - tailscale
     - virtualbox

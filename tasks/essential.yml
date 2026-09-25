@@ -8,7 +8,7 @@
     dpkg --force-confdef --configure grub-pc
   environment:
     DEBIAN_FRONTEND: noninteractive
-  when: ansible_distribution == "Debian"
+  when: ansible_facts["distribution"] == "Debian"
   changed_when: false
   failed_when: false
 

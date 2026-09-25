@@ -4,6 +4,7 @@ Supported platforms:
 - Ubuntu:
     - 22.04
     - 24.04
+    - 26.04
 - Mint:
     - Zena 22.3
 - Debian:
