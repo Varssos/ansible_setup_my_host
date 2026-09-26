@@ -6,28 +6,31 @@
     - name: Set ubuntu_codename fact
       import_role:
         name: ubuntu-codename
+      tags: always
 
     - name: Run essential setup
       import_tasks: tasks/essential.yml
+      tags: essential
 
   roles:
-    - geerlingguy.pip
-    - geerlingguy.docker
-    - dotfiles
-    - chrome
-    - coolercontrol
-    - fzf
-    - grub-customizer
-    - klogg
-    # - nomachine # not working due to different links and 14 day trial license
-    - sublime
-    - tailscale
-    - virtualbox
-    - vscode
-    - wireshark
-    - copyq
+    - { role: geerlingguy.pip, tags: pip }
+    - { role: geerlingguy.docker, tags: docker }
+    - { role: dotfiles, tags: dotfiles }
+    - { role: chrome, tags: chrome }
+    - { role: coolercontrol, tags: coolercontrol }
+    - { role: fzf, tags: fzf }
+    - { role: grub-customizer, tags: grub-customizer }
+    - { role: klogg, tags: klogg }
+    # - { role: nomachine, tags: nomachine } # not working due to different links and 14 day trial license
+    - { role: sublime, tags: sublime }
+    - { role: tailscale, tags: tailscale }
+    - { role: virtualbox, tags: virtualbox }
+    - { role: vscode, tags: vscode }
+    - { role: wireshark, tags: wireshark }
+    - { role: copyq, tags: copyq }
 
   post_tasks:
     - name: Run private applications
       include_tasks: tasks/private.yml
       when: is_private_machine
+      tags: private

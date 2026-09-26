@@ -5,25 +5,28 @@
     state: present
   # Some packages may not be available on all distributions (see comments in vars.yml)
   failed_when: false
+  tags: private-packages
 
 - name: Install private Flatpak packages
   community.general.flatpak:
     name: "{{ flatpak_packages_private }}"
     state: present
     remote: flathub
+  tags: private-packages
 
 - name: Install Signal
-  ansible.builtin.include_role:
+  ansible.builtin.import_role:
     name: signal
+  tags: signal
 
-- name: Install Tailscale
-  ansible.builtin.include_role:
-    name: tailscale
+# tailscale is already installed unconditionally by site.yml roles, no need to repeat it here
 
 - name: Install Wine
-  ansible.builtin.include_role:
+  ansible.builtin.import_role:
     name: wine
+  tags: wine
 
 - name: Install xdotool
-  ansible.builtin.include_role:
+  ansible.builtin.import_role:
     name: xdotool
+  tags: xdotool

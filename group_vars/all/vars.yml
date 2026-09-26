@@ -21,6 +21,7 @@ apt_packages:
   - gimp
   - nmap
   - libimage-exiftool-perl
+  - ripgrep
 
   # automotive
   - dlt-viewer

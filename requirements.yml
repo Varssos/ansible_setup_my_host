@@ -1,11 +1,15 @@
 ---
 collections:
   - name: community.docker
+    version: ">=5.0.4,<6.0.0"
   - name: community.general
+    version: ">=12.1.0,<13.0.0"
 
 roles:
   - name: geerlingguy.docker
+    version: ">=8.0.0,<9.0.0"
   - name: geerlingguy.pip
+    version: ">=3.1.2,<4.0.0"
 
   # My roles
 #  - name: Varssos.nomachine

@@ -20,6 +20,12 @@ Temporarily disabled:
 - Set `is_private_machine: true` in [group_vars/all/vars.yml](group_vars/all/vars.yml) for private machine installs
   - Already set to `true` for vagrant group in [group_vars/vagrant/vars.yml](group_vars/vagrant/vars.yml)
 
+## Install git
+```
+sudo apt update
+sudo apt install git
+```
+
 ## Add submodules
 
 ```
@@ -27,11 +33,9 @@ git submodule init
 git submodule update --init --remote --recursive
 ```
 
-## Install git and ansible
+## Install ansible
 
 ```
-sudo apt update
-sudo apt install git
 sudo apt install ansible-core
 ```
 
@@ -56,6 +60,21 @@ ansible-playbook run.yml -K -e "is_private_machine=true"
 ```
 
 The main playbook logic lives in [site.yml](./site.yml). `run.yml` and `test_run.yml` are thin wrappers that set the target host group.
+
+### Selective runs with tags
+
+Every role/task block is tagged with its own name, so you can install or skip individual pieces:
+```
+ansible-playbook run.yml -K --tags docker,vscode
+ansible-playbook run.yml -K --skip-tags private
+```
+
+## Troubleshooting
+
+- See [run_status.md](run_status.md) for known per-distro issues and workarounds.
+- `apt` lock errors: another apt/unattended-upgrade process is running; wait and retry.
+- Vagrant SSH failures: run `./run.sh halt all` then `./run.sh` again to refresh the VM.
+- Run with `-vvv` for verbose task output when a role fails silently.
 
 ## TODO after installation
 ### Install private dotfiles

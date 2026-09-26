@@ -9,7 +9,8 @@
   environment:
     DEBIAN_FRONTEND: noninteractive
   when: ansible_facts["distribution"] == "Debian"
-  changed_when: false
+  register: grub_pc_fix
+  changed_when: "'Setting up grub-pc' in grub_pc_fix.stdout"
   failed_when: false
 
 - name: Update packages
@@ -35,8 +36,10 @@
     state: present
 
 - name: Add Flathub repository
-  ansible.builtin.command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-  changed_when: false
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
 
 - name: Install packages with Flatpak
   community.general.flatpak:
