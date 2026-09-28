@@ -57,7 +57,10 @@ export TAILSCALE_KEY="HERE_YOUR_KEY_FROM_SETTINGS_AUTH_KEYS"
 ansible-playbook run.yml -K
 # Or on private machine (overrides group_vars default)
 ansible-playbook run.yml -K -e "is_private_machine=true"
+# In case of issues with sudo:
+export ANSIBLE_BECOME_EXE=sudo.ws
 ```
+
 
 The main playbook logic lives in [site.yml](./site.yml). `run.yml` and `test_run.yml` are thin wrappers that set the target host group.
 

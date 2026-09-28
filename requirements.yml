@@ -7,9 +7,7 @@ collections:
 
 roles:
   - name: geerlingguy.docker
-    version: ">=8.0.0,<9.0.0"
   - name: geerlingguy.pip
-    version: ">=3.1.2,<4.0.0"
 
   # My roles
 #  - name: Varssos.nomachine
