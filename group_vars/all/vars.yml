@@ -6,11 +6,9 @@ apt_packages:
   - vim
   - htop
   - screenfetch
-  - curl
   - git
 
   # Useful tools
-  - speedtest-cli
   - filezilla
   - meld
   - kdiff3
@@ -19,9 +17,14 @@ apt_packages:
   - gparted
   - shellcheck
   - gimp
-  - nmap
   - libimage-exiftool-perl
   - ripgrep
+
+  # network
+  - curl
+  - iproute2
+  - nmap
+  - speedtest-cli
 
   # automotive
   - dlt-viewer
