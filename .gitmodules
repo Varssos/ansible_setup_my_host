@@ -54,3 +54,9 @@
 [submodule "roles/copyq"]
 	path = roles/copyq
 	url = https://github.com/Varssos/ansible-role-copyq.git
+[submodule "roles/kitty"]
+	path = roles/kitty
+	url = https://github.com/Varssos/ansible-role-kitty.git
+[submodule "roles/tmux"]
+	path = roles/tmux
+	url = https://github.com/Varssos/ansible-role-tmux.git

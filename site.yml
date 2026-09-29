@@ -16,6 +16,8 @@
     - { role: geerlingguy.pip, tags: pip }
     - { role: geerlingguy.docker, tags: docker }
     - { role: dotfiles, tags: dotfiles }
+    - { role: kitty, tags: kitty }
+    - { role: tmux, tags: tmux }
     - { role: chrome, tags: chrome }
     - { role: coolercontrol, tags: coolercontrol }
     - { role: fzf, tags: fzf }
