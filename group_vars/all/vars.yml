@@ -7,6 +7,7 @@ apt_packages:
   - htop
   - screenfetch
   - git
+  - gh
 
   # Useful tools
   - filezilla
@@ -46,6 +47,5 @@ flatpak_packages_private:
 ## geerlingguy.docker
 # Docker's Linux Mint repository is Ubuntu-based, so it needs UBUNTU_CODENAME rather
 # than Mint's distribution_release.
-docker_apt_release: "{{ ubuntu_codename if ansible_facts['distribution'] == 'Linux Mint' else ansible_facts['distribution_release'] }}"
-docker_users:
+docker_users_to_add:
   - "{{ ansible_user }}"

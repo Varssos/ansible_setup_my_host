@@ -400,7 +400,7 @@ ansible_setup_my_host/
 ├── test_run.yml                 ← thin wrapper: import_playbook site.yml, target_hosts=vagrant
 ├── group_vars/
 │   ├── all/vars.yml             ← apt_packages, flatpak_packages, apt_packages_private,
-│   │                               flatpak_packages_private, nomachine_deb_url, docker_users
+│   │                               flatpak_packages_private, nomachine_deb_url, docker_users_to_add
 │   │                               is_private_machine: false (default)
 │   └── vagrant/vars.yml         ← is_private_machine: true (for all vagrant VMs)
 ├── tasks/

@@ -14,7 +14,10 @@
 
   roles:
     - { role: geerlingguy.pip, tags: pip }
-    - { role: geerlingguy.docker, tags: docker }
+    - role: geerlingguy.docker
+      vars:
+        docker_users: "{{ [] if ansible_facts['distribution'] == 'Linux Mint' else docker_users_to_add }}"
+      tags: docker
     - { role: dotfiles, tags: dotfiles }
     - { role: kitty, tags: kitty }
     - { role: tmux, tags: tmux }
@@ -32,6 +35,23 @@
     - { role: copyq, tags: copyq }
 
   post_tasks:
+    - name: Add Docker users to the docker group on Linux Mint
+      ansible.builtin.user:
+        name: "{{ item }}"
+        groups: docker
+        append: true
+      loop: "{{ docker_users_to_add }}"
+      register: _mint_docker_user_membership
+      when: ansible_facts['distribution'] == 'Linux Mint'
+      tags: docker
+
+    - name: Reset SSH connection after adding Docker users on Linux Mint
+      ansible.builtin.meta: reset_connection
+      when:
+        - ansible_facts['distribution'] == 'Linux Mint'
+        - _mint_docker_user_membership is changed
+      tags: docker
+
     - name: Run private applications
       include_tasks: tasks/private.yml
       when: is_private_machine
