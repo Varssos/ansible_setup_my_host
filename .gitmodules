@@ -1,5 +1,5 @@
 [submodule "roles/dotfiles_ansible"]
-	path = roles/dotfiles_ansible
+	path = roles/dotfiles
 	url = https://github.com/Varssos/dotfiles_ansible.git
 	branch = master
 [submodule "vagrant_for_ansible"]
@@ -60,3 +60,6 @@
 [submodule "roles/tmux"]
 	path = roles/tmux
 	url = https://github.com/Varssos/ansible-role-tmux.git
+[submodule "roles/bashrc"]
+	path = roles/bashrc
+	url = https://github.com/Varssos/ansible-role-bashrc.git

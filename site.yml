@@ -19,6 +19,7 @@
         docker_users: "{{ [] if ansible_facts['distribution'] == 'Linux Mint' else docker_users_to_add }}"
       tags: docker
     - { role: dotfiles, tags: dotfiles }
+    - { role: bashrc, tags: bashrc }
     - { role: kitty, tags: kitty }
     - { role: tmux, tags: tmux }
     - { role: chrome, tags: chrome }
