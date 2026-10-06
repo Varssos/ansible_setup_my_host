@@ -29,6 +29,7 @@ apt_packages:
 
   # automotive
   - dlt-viewer
+  - dlt-tools
 
 apt_packages_private:
   - anki # Not available on Ubuntu 25.04
