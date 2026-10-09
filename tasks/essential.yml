@@ -29,6 +29,17 @@
     name: "{{ apt_packages }}"
     state: present
 
+- name: Install lazygit on supported Ubuntu and Debian versions
+  ansible.builtin.package:
+    name: lazygit
+    state: present
+  when:
+    - >-
+      (ansible_facts['distribution'] == 'Ubuntu' and
+      ansible_facts['distribution_version'] is version('25.10', '>=')) or
+      (ansible_facts['distribution'] == 'Debian' and
+      ansible_facts['distribution_version'] is version('13', '>='))
+
 
 - name: Install flatpak
   ansible.builtin.apt:
