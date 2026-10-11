@@ -13,7 +13,6 @@ apt_packages:
   - filezilla
   - meld
   - kdiff3
-  - shutter
   - remmina
   - gparted
   - shellcheck

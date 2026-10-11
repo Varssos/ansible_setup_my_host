@@ -29,7 +29,7 @@
     - { role: klogg, tags: klogg }
     # - { role: nomachine, tags: nomachine } # not working due to different links and 14 day trial license
     - { role: sublime, tags: sublime }
-    - { role: tailscale, tags: tailscale }
+    # - { role: tailscale, tags: tailscale }
     - { role: virtualbox, tags: virtualbox }
     - { role: vscode, tags: vscode }
     - { role: wireshark, tags: wireshark }
