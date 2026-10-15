@@ -19,6 +19,7 @@ Temporarily disabled:
 - `ansible_user` is set per-host in [hosts](./hosts) — also explicitly for localhost (required by roles that use `{{ ansible_user }}`, e.g. docker, dotfiles, wireshark)
 - Set `is_private_machine: true` in [group_vars/all/vars.yml](group_vars/all/vars.yml) for private machine installs
   - Already set to `true` for vagrant group in [group_vars/vagrant/vars.yml](group_vars/vagrant/vars.yml)
+- Steam setup enables `i386` and Ubuntu multiverse automatically. On Debian, configure the apt sources to include `contrib` and `non-free` before running; keep any existing `non-free-firmware` component.
 
 ## Install git
 ```
@@ -55,7 +56,10 @@ export TAILSCALE_KEY="HERE_YOUR_KEY_FROM_SETTINGS_AUTH_KEYS"
 
 ```
 ansible-playbook run.yml -K
-# Or on private machine (overrides group_vars default)
+```
+
+Or on private machine (overrides group_vars default)
+```
 ansible-playbook run.yml -K -e "is_private_machine=true"
 # In case of issues with sudo:
 export ANSIBLE_BECOME_EXE=sudo.ws

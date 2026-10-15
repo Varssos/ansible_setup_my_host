@@ -1,4 +1,32 @@
 ---
+- name: Get foreign architectures for Steam
+  ansible.builtin.command: dpkg --print-foreign-architectures
+  register: _steam_foreign_architectures
+  changed_when: false
+  tags: private
+
+- name: Enable i386 architecture for Steam
+  ansible.builtin.command: dpkg --add-architecture i386
+  when: "'i386' not in _steam_foreign_architectures.stdout_lines"
+  tags: private
+
+- name: Enable Ubuntu multiverse for Steam
+  ansible.builtin.apt_repository:
+    repo: "deb http://archive.ubuntu.com/ubuntu {{ ubuntu_codename }} multiverse"
+    filename: steam-multiverse
+    state: present
+  when: ansible_facts['distribution'] in ['Ubuntu', 'Linux Mint']
+  tags: private
+
+- name: Install Steam
+  ansible.builtin.apt:
+    name: "{{ 'steam-installer' if ansible_facts['distribution'] == 'Debian' else 'steam' }}"
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+  when: ansible_facts['distribution'] in ['Debian', 'Ubuntu', 'Linux Mint']
+  tags: private
+
 - name: Install private apt packages
   ansible.builtin.package:
     name: "{{ apt_packages_private }}"

@@ -55,5 +55,5 @@
 
     - name: Run private applications
       include_tasks: tasks/private.yml
-      when: is_private_machine
+      when: is_private_machine | bool
       tags: private
